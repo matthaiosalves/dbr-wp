@@ -57,7 +57,7 @@
 
 	<!-- Login Dropdown (mantido do original, você pode tirar depois) -->
 	<ul id="login" class="dropdown-content">
-		<form action="https://diario.forcasarmadasbrhb.net/login/logar" method="POST">
+		<form action="<?php echo home_url('/login/logar'); ?>" method="POST">
 			<div class="form-group">
 				<label for="nickname">Nick</label>
 				<input type="text" name="nickname" id="nickname" placeholder="Digite seu nickname" class="browser-default" required>
@@ -66,7 +66,7 @@
 				<label for="senha">Senha</label>
 				<input type="password" name="senha" id="senha" placeholder="Digite sua senha" class="browser-default" required>
 			</div>
-			<a href="https://diario.forcasarmadasbrhb.net/esqueci-minha-senha" style="line-height:0;margin-top:15px;margin-bottom:20px;text-align:end;color:red;">Esqueci minha senha</a>
+			<a href="<?php echo home_url('/esqueci-minha-senha'); ?>" style="line-height:0;margin-top:15px;margin-bottom:20px;text-align:end;color:red;">Esqueci minha senha</a>
 			<div id="captcha_element"></div>
 			<input type="submit" value="VAMOS LÁ!" class="btn btn100 red" />
 		</form>
@@ -76,43 +76,53 @@
 		<nav>
 			<div class="nav-wrapper">
 				<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-				<a href="https://diario.forcasarmadasbrhb.net/" class="show-on-medium-and-down" style="height:55px;background:unset;display: none;line-height: 65px;text-align: center;">
-					<img src="https://diario.forcasarmadasbrhb.net/assets/images/dbr.png" alt="DBR Logo" width="64">
+				<a href="<?php echo home_url('/'); ?>" class="show-on-medium-and-down" style="height:55px;background:unset;display: none;line-height: 65px;text-align: center;">
+					<img
+						src="<?php echo home_url('/assets/images/dbr.png'); ?>"
+						alt="DBR Logo"
+						width="64"
+						onerror="this.onerror=null;this.src='https://diario.forcasarmadasbrhb.net/assets/images/dbr.png';">
+
 				</a>
 				<ul class="hide-on-med-and-down">
 					<li>
-						<a href="https://diario.forcasarmadasbrhb.net/" style="display:flex;justify-content:center;align-items:center;height:55px;background:unset;">
-							<img src="https://diario.forcasarmadasbrhb.net/assets/images/dbr.png" alt="DBR Logo" width="64">
+						<a href="<?php echo home_url('/'); ?>" style="display:flex;justify-content:center;align-items:center;height:55px;background:unset;">
+							<img
+								src="<?php echo home_url('/assets/images/dbr.png'); ?>"
+								alt="DBR Logo"
+								width="64"
+								onerror="this.onerror=null;this.src='https://diario.forcasarmadasbrhb.net/assets/images/dbr.png';">
+
 						</a>
 					</li>
-					<li><a href="https://diario.forcasarmadasbrhb.net/">INÍCIO</a></li>
-					<li><a href="https://diario.forcasarmadasbrhb.net/diario/sobre">O DBR</a></li>
-					<li><a href="https://diario.forcasarmadasbrhb.net/diario/colunas-posts">COLUNAS E POSTS</a></li>
-					<li><a href="https://diario.forcasarmadasbrhb.net/diario/equipe">EQUIPE</a></li>
-					<li><a href="https://diario.forcasarmadasbrhb.net/diario/seja-do-dbr">SEJA DO DBR</a></li>
+					<li><a href="<?php echo home_url('/'); ?>">INÍCIO</a></li>
+					<li><a href="<?php echo home_url('/diario/sobre'); ?>">O DBR</a></li>
+					<li><a href="<?php echo home_url('/diario/colunas-posts'); ?>">COLUNAS E POSTS</a></li>
+					<li><a href="<?php echo home_url('/diario/equipe'); ?>">EQUIPE</a></li>
+					<li><a href="<?php echo home_url('/diario/seja-do-dbr'); ?>">SEJA DO DBR</a></li>
 					<li><a href="https://diario-br.blogspot.com.br">ARQUIVO</a></li>
-					<li><a href="https://diario.forcasarmadasbrhb.net/diario/fale-conosco">FALE CONOSCO</a></li>
-					<li class="right"><a href="https://diario.forcasarmadasbrhb.net/cadastrar-se">CADASTRE-SE</a></li>
+					<li><a href="<?php echo home_url('/diario/fale-conosco'); ?>">FALE CONOSCO</a></li>
+					<li class="right"><a href="<?php echo home_url('/cadastrar-se'); ?>">CADASTRE-SE</a></li>
 					<li class="right"><a class="dropdown-trigger login-dropdown" href="#!" data-target="login">LOGIN</a></li>
 				</ul>
 			</div>
 		</nav>
 	</div>
 	<ul id="slide-out" class="sidenav">
-		<li><a href="https://diario.forcasarmadasbrhb.net/">INÍCIO</a></li>
+		<li><a href="<?php echo home_url('/'); ?>">INÍCIO</a></li>
 		<li>
 			<div class="divider"></div>
 		</li>
-		<li><a href="https://diario.forcasarmadasbrhb.net/diario/sobre">O DBR</a></li>
-		<li><a href="https://diario.forcasarmadasbrhb.net/diario/colunas-posts">COLUNAS E POSTS</a></li>
-		<li><a href="https://diario.forcasarmadasbrhb.net/diario/equipe">EQUIPE</a></li>
-		<li><a href="https://diario.forcasarmadasbrhb.net/diario/seja-do-dbr">SEJA DO DBR</a></li>
+		<li><a href="<?php echo home_url('/diario/sobre'); ?>">O DBR</a></li>
+		<li><a href="<?php echo home_url('/diario/colunas-posts'); ?>">COLUNAS E POSTS</a></li>
+		<li><a href="<?php echo home_url('/diario/equipe'); ?>">EQUIPE</a></li>
+		<li><a href="<?php echo home_url('/diario/seja-do-dbr'); ?>">SEJA DO DBR</a></li>
 		<li><a href="https://diario-br.blogspot.com.br">ARQUIVO</a></li>
-		<li><a href="https://diario.forcasarmadasbrhb.net/diario/fale-conosco">FALE CONOSCO</a></li>
+		<li><a href="<?php echo home_url('/diario/fale-conosco'); ?>">FALE CONOSCO</a></li>
 		<li>
 			<div class="divider"></div>
 		</li>
-		<li><a href="https://diario.forcasarmadasbrhb.net/login">LOGIN</a></li>
-		<li><a href="https://diario.forcasarmadasbrhb.net/cadastrar-se">CADASTRE-SE</a></li>
+		<li><a href="<?php echo home_url('/login'); ?>">LOGIN</a></li>
+		<li><a href="<?php echo home_url('/cadastrar-se'); ?>">CADASTRE-SE</a></li>
 	</ul>
 	<div class="container" style="margin-top:10px;">

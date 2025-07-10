@@ -133,3 +133,9 @@ function dbr_wp_scripts()
 	}
 }
 add_action('wp_enqueue_scripts', 'dbr_wp_scripts');
+
+
+
+require_once get_template_directory() . '/inc/cpt/noticias.php';
+require_once get_template_directory() . '/inc/noticias-rules-url.php';
+require_once get_template_directory() . '/inc/paginas-rules-url.php';
