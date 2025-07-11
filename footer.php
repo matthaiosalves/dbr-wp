@@ -39,6 +39,48 @@
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v5.0&appId=1304937852983491&autoLogAppEvents=1"></script>
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
+<script>
+	document.getElementById('search-form').addEventListener('submit', function(e) {
+		e.preventDefault();
+		let term = document.getElementById('keyword').value.trim();
+		let loading = document.getElementById('search-loading');
+		let leiaMais = document.getElementById('leia-mais');
+		if (!term) return;
+
+		loading.style.display = 'block';
+		leiaMais.innerHTML = ""; // Limpa enquanto busca
+
+		fetch('<?php echo admin_url("admin-ajax.php"); ?>?action=dbr_ajax_search&keyword=' + encodeURIComponent(term))
+			.then(response => response.json())
+			.then(data => {
+				loading.style.display = 'none';
+				if (data.length > 0) {
+					leiaMais.innerHTML = `<h1>Resultados encontrados</h1>` +
+						data.map(item =>
+							`<a href="${item.link}">
+              <div class="noticia">
+                <div class="imagem" style="background-image:url('${item.img}');"></div>
+                <div class="conteudo">
+                  <p>${item.title}</p>
+                  <p>${item.date} - ${item.author}</p>
+                  <p>${item.excerpt}</p>
+                </div>
+              </div>
+            </a>`
+						).join('');
+				} else {
+					leiaMais.innerHTML = `<h1>Resultados encontrados</h1><p>Nenhuma notícia encontrada.</p>`;
+				}
+			})
+			.catch(err => {
+				loading.style.display = 'none';
+				leiaMais.innerHTML = `<p>Erro ao buscar resultados.</p>`;
+			});
+	});
+</script>
+
+
 </body>
 
 </html>
