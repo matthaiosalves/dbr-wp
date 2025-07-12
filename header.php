@@ -66,7 +66,7 @@
 				<label for="user_pass">Senha</label>
 				<input type="password" name="pwd" id="user_pass" placeholder="Digite sua senha" class="browser-default" required autocomplete="current-password">
 			</div>
-			<a href="<?php echo esc_url(wp_lostpassword_url()); ?>" style="line-height:0;margin-top:15px;margin-bottom:20px;text-align:end;color:red;">Esqueci minha senha</a>
+			<a href="<?php echo home_url('/esqueci-minha-senha'); ?>" style="line-height:0;margin-top:15px;margin-bottom:20px;text-align:end;color:red;">Esqueci minha senha</a>
 			<div id="captcha_element"></div>
 			<input type="submit" value="VAMOS LÁ!" class="btn btn100 red" />
 			<input type="hidden" name="redirect_to" value="<?php echo esc_url(home_url('/')); ?>">

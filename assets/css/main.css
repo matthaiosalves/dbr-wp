@@ -1,5 +1,4 @@
 :root {
-  /* Paleta de cores */
   --color-primary: #ffa800;
   --color-secondary: #f9ba23;
   --color-accent: #f94623;
@@ -19,14 +18,10 @@
   --color-black: #000;
   --color-border: #ccc;
   --color-error: #c10000;
-
-  /* Fontes */
   --font-main: "Tahoma";
   --font-alt: "Nirmala";
   --font-pixel: "Pixellari";
   --font-title: "Teko";
-
-  /* Espaçamentos */
   --space-xs: 4px;
   --space-s: 5px;
   --space-m: 10px;
@@ -34,8 +29,6 @@
   --space-xl: 20px;
   --space-xxl: 25px;
   --space-xxxl: 30px;
-
-  /* Tamanhos */
   --border-radius-s: 4px;
   --border-radius-m: 5px;
   --border-radius-circle: 58px;
@@ -52,8 +45,6 @@
   --font-size-member: 18px;
   --font-size-banner: 45px;
 }
-
-/* FONT-FACE DEFINITIONS */
 @font-face {
   font-family: "Pixellari";
   font-style: normal;
@@ -107,19 +98,20 @@
     U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
     U+FEFF, U+FFFD;
 }
-
-/* GLOBALS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+}
 html,
 body {
   background-image: url("https://i.imgur.com/9qehJqr.png");
   font-family: var(--font-main);
 }
-
 .btn100 {
   width: 100%;
 }
-
-/* NAV */
 nav {
   background-color: var(--color-primary);
   font-family: var(--font-title);
@@ -131,19 +123,13 @@ nav a {
 nav a {
   font-size: 1.3em !important;
 }
-
-/* FOOTER */
 .page-footer {
   background-color: var(--color-primary);
   font-family: var(--font-main);
 }
-
-/* TIMELINE HEADER */
 .timeline-Header {
   display: none;
 }
-
-/* CAPTCHA */
 #captcha_element {
   margin-top: var(--space-m);
 }
@@ -154,8 +140,6 @@ nav a {
   z-index: -999999;
   opacity: 0;
 }
-
-/* LOGIN */
 #login {
   background: var(--color-secondary);
   font-family: var(--font-alt);
@@ -181,8 +165,6 @@ nav a {
   padding-left: var(--space-m);
   width: 100%;
 }
-
-/* DESTAQUES */
 .destaques {
   background-color: var(--color-white);
   border: 1px solid var(--color-light-gray);
@@ -240,8 +222,6 @@ nav a {
 .destaques .noticia.show a .por {
   display: block;
 }
-
-/* CAIXAS DE CONTEÚDO */
 .categorias,
 .c_criacao,
 .colunas,
@@ -257,8 +237,6 @@ nav a {
   margin-bottom: var(--space-xl);
   padding: var(--space-xl);
 }
-
-/* TITULOS DE CAIXAS */
 .categorias h1,
 .colunas h1,
 .destaque h1,
@@ -274,8 +252,6 @@ nav a {
   margin-bottom: var(--space-s);
   text-transform: uppercase;
 }
-
-/* COLUNAS */
 .colunas .coluna {
   color: var(--color-black);
   height: 245px;
@@ -302,8 +278,6 @@ nav a {
   text-shadow: 2px 2px var(--color-black);
   text-transform: uppercase;
 }
-
-/* LEIA MAIS */
 .leia_mais a {
   color: var(--color-black);
 }
@@ -335,16 +309,12 @@ nav a {
 .leia_mais .noticia .conteudo p:nth-child(3) {
   font-size: var(--font-size-m);
 }
-
-/* CATEGORIAS */
 .categorias a {
   color: var(--color-accent);
   display: block;
   font-size: var(--font-size-xxl);
   font-weight: bold;
 }
-
-/* MAIS LIDAS */
 .mais_lidas .mais_lida {
   display: flex;
 }
@@ -384,8 +354,6 @@ nav a {
   text-align: justify;
   width: 88px;
 }
-
-/* DESTAQUE */
 .destaque .membro_destaque {
   background-color: var(--color-primary);
   height: 90px;
@@ -411,8 +379,6 @@ nav a {
   bottom: var(--space-xl);
   width: 155px;
 }
-
-/* SOBRE / CRIAÇÃO */
 .sobre h1,
 .c_criacao h1 {
   color: var(--color-primary);
@@ -456,8 +422,6 @@ nav a {
   margin: unset;
   vertical-align: middle;
 }
-
-/* SOCIAL SHARE BUTTONS */
 .facebook-share-button,
 .twitterr-share-button {
   align-items: center;
@@ -508,8 +472,6 @@ nav a {
   right: -25px;
   top: 2px;
 }
-
-/* SOBRE: TITULO/POR/NOTICIA */
 .sobre .titulo {
   color: var(--color-primary);
   font-size: 1.5rem;
@@ -528,8 +490,6 @@ nav a {
 .sobre .noticia p {
   margin: 0;
 }
-
-/* COMENTÁRIOS */
 .comentarios .comentario {
   display: flex;
 }
@@ -569,8 +529,6 @@ nav a {
 .comentarios .comentario .info p {
   margin: 0;
 }
-
-/* FORMULARIOS: SEJA MEMBRO/CRIAÇÃO */
 #seja_membro,
 .c_criacao div {
   margin-top: var(--space-xxxl);
@@ -589,8 +547,6 @@ nav a {
 .c_criacao label small {
   font-weight: normal;
 }
-
-/* PERFIL SIDE / DROPDOWN */
 #perfil_side {
   font-family: var(--font-main);
   padding: 0 32px;
@@ -660,8 +616,6 @@ nav a {
   margin-left: -12px;
   margin-top: -40px;
 }
-
-/* C_CRIAÇÃO: NOTÍCIA, MEMBROS */
 .c_criacao .noticia {
   align-items: center;
   border: 1px solid var(--color-border);
@@ -728,16 +682,12 @@ nav a {
   color: var(--color-accent);
   text-transform: uppercase;
 }
-
-/* TOAST CONTAINER RESPONSIVE */
 @media only screen and (min-width: 993px) {
   #toast-container {
     top: unset;
     bottom: 7%;
   }
 }
-
-/* SEARCH */
 .search-bar {
   align-items: center;
   background-color: var(--color-light-alt);
