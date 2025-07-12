@@ -100,8 +100,8 @@
 					<li><a href="<?php echo home_url('/colunas-posts'); ?>">COLUNAS E POSTS</a></li>
 					<li><a href="<?php echo home_url('/equipe'); ?>">EQUIPE</a></li>
 					<li><a href="<?php echo home_url('/seja-do-dbr'); ?>">SEJA DO DBR</a></li>
-					<li><a href="https://diario-br.blogspot.com.br">ARQUIVO</a></li>
 					<li><a href="<?php echo home_url('/fale-conosco'); ?>">FALE CONOSCO</a></li>
+					<li><a href="https://diario-br.blogspot.com.br">ARQUIVO</a></li>
 
 					<?php if (is_user_logged_in()):
 						$user = wp_get_current_user();
