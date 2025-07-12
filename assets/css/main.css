@@ -400,6 +400,7 @@ nav a {
   background: unset;
   border: 1px solid var(--color-primary);
   height: 6px;
+  margin-bottom: 15px;
 }
 .sobre strong,
 .c_criacao strong {
