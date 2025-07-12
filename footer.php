@@ -27,7 +27,7 @@
 	</div>
 	<div class="footer-copyright">
 		<div class="container">
-			© 2012 - 2025 Copyright Diário Brasileiro, DBR
+			© 2012 - <?php echo date('Y'); ?> Copyright Diário Brasileiro, DBR
 		</div>
 	</div>
 </footer>

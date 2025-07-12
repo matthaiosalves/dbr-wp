@@ -111,22 +111,6 @@ const News = {
     }
 }
 
-function ping() {
-    fetch(`${BASE}ajax/ping`)
-        .then((r) => r.json())
-        .then((json) => {
-            if (json.status === 1) {
-                setTimeout(() => {
-                    ping()
-                }, 10000);
-            }
-        })
-        .catch((erro) => {
-            // erro em falhas
-        })
-}
-
-
 function limpar() {
     // console.clear();
     setTimeout(() => {

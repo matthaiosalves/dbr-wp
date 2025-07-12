@@ -73,14 +73,13 @@
 		</form>
 	</ul>
 
-
 	<div class="navbar-fixed">
 		<nav>
 			<div class="nav-wrapper">
 				<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 				<a href="<?php echo home_url('/'); ?>" class="show-on-medium-and-down" style="height:55px;background:unset;display: none;line-height: 65px;text-align: center;">
 					<img
-						src="<?php echo home_url('/assets/images/dbr.png'); ?>"
+						src="<?php echo get_template_directory_uri(); ?>/assets/images/dbr.png"
 						alt="DBR Logo"
 						width="64"
 						onerror="this.onerror=null;this.src='<?php echo get_template_directory_uri(); ?>/assets/images/dbr.png';">
@@ -90,7 +89,7 @@
 					<li>
 						<a href="<?php echo home_url('/'); ?>" style="display:flex;justify-content:center;align-items:center;height:55px;background:unset;">
 							<img
-								src="<?php echo home_url('/assets/images/dbr.png'); ?>"
+								src="<?php echo get_template_directory_uri(); ?>/assets/images/dbr.png"
 								alt="DBR Logo"
 								width="64"
 								onerror="this.onerror=null;this.src='<?php echo get_template_directory_uri(); ?>/assets/images/dbr.png';">

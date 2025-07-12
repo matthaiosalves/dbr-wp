@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying 404 pages (not found)
  *
@@ -7,54 +8,50 @@
  * @package Diário_Brasileiro_Habbo
  */
 
-get_header();
 ?>
 
-	<main id="primary" class="site-main">
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
 
-		<section class="error-404 not-found">
-			<header class="page-header">
-				<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'dbr-wp' ); ?></h1>
-			</header><!-- .page-header -->
+<head>
+	<meta charset="<?php bloginfo('charset'); ?>">
+	<title>Página não encontrada - <?php bloginfo('name'); ?></title>
+	<link rel="icon" type="image/x-icon" href="<?php echo esc_url(get_template_directory_uri() . '/assets/images/favicon.ico'); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="description" content="Leia, em primeira mão, as notícias do Exército Brasileiro!">
 
-			<div class="page-content">
-				<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'dbr-wp' ); ?></p>
+	<meta property="og:site_name" content="<?php bloginfo('name'); ?>">
+	<meta property="og:title" content="<?php bloginfo('name'); ?>">
+	<meta property="og:url" content="<?php echo esc_url(home_url('/')); ?>">
+	<meta property="og:locale" content="pt_BR">
+	<meta property="og:description" content="Leia, em primeira mão, as notícias do Exército Brasileiro!">
+	<meta property="og:image" content="<?php echo esc_url(get_template_directory_uri() . '/assets/images/icone.png'); ?>">
+	<meta name="theme-color" content="#ffa800">
 
-					<?php
-					get_search_form();
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,700" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="<?php echo esc_url(get_template_directory_uri() . '/assets/css/materialize.min.css'); ?>" />
 
-					the_widget( 'WP_Widget_Recent_Posts' );
-					?>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" crossorigin="anonymous"></script>
 
-					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'dbr-wp' ); ?></h2>
-						<ul>
-							<?php
-							wp_list_categories(
-								array(
-									'orderby'    => 'count',
-									'order'      => 'DESC',
-									'show_count' => 1,
-									'title_li'   => '',
-									'number'     => 10,
-								)
-							);
-							?>
-						</ul>
-					</div><!-- .widget -->
+	<script>
+		setTimeout(function() {
+			window.location.href = "<?php echo esc_url(home_url('/')); ?>";
+		}, 10000);
+	</script>
+</head>
 
-					<?php
-					/* translators: %1$s: smiley */
-					$dbr_wp_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'dbr-wp' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$dbr_wp_archive_content" );
+<body style="background:#ffa800;height: 100vh;font-family: 'Titillium Web',sans-serif;color:white;display: flex;align-items: center;justify-content:center;">
+	<div class="container">
+		<h1 align="center" style="font-weight:900;font-size:150px;margin:0;">#404</h1>
+		<h1 align="center" style="font-size:30px;font-weight:900;margin:0;">
+			Infelizmente não encontramos esta página. <br> Nossos estagiários estão trabalhando 24h para resolver o seu problema. <br> Pedimos desculpa pelo incómodo causado.
+		</h1>
+		<p align="center" style="margin-top:30px;font-size:18px;">
+			Você será redirecionado para a página inicial em instantes.
+		</p>
+	</div>
+</body>
 
-					the_widget( 'WP_Widget_Tag_Cloud' );
-					?>
-
-			</div><!-- .page-content -->
-		</section><!-- .error-404 -->
-
-	</main><!-- #main -->
-
-<?php
-get_footer();
+</html>
