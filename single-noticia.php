@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <div style="text-align:center;">
-  <img src="https://diario.forcasarmadasbrhb.net/assets/images/banner_dbr.png" alt="Banner DBR" style="max-width:100%;">
+  <img src="<?php echo get_template_directory_uri(); ?>/assets/images/banner_dbr.png" alt="Banner DBR" style="max-width:100%;">
 </div>
 
 <div class="row" style="margin-top:10px;">
@@ -59,10 +59,12 @@
 
     </div>
 
-    <h5 style="font-weight:bold;font-size:20px;">Efetue o <a href="https://diario.forcasarmadasbrhb.net/login" style="color:#ffa800;">login</a> ou <a href="https://diario.forcasarmadasbrhb.net/cadastrar-se" style="color:#ffa800;">cadastre-se</a> para poder comentar.</h5>
 
-    <div class="comentarios">
-    </div>
+    <?php
+    if (comments_open() || get_comments_number()) {
+      comments_template();
+    }
+    ?>
   </div>
 
   <!-- SIDEBAR (coluna lateral) -->

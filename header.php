@@ -15,40 +15,40 @@
 <html lang="pt-br">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Início - Diário Brasileiro</title>
-	<link rel="shortcut icon" type="image/x-icon" href="https://diario.forcasarmadasbrhb.net/assets/images/favicon.ico">
+	<meta charset="<?php bloginfo('charset'); ?>">
+	<title><?php wp_title('|', true, 'right'); ?><?php bloginfo('name'); ?></title>
+
+	<link rel="icon" type="image/x-icon" href="<?php echo esc_url(get_template_directory_uri() . '/assets/images/favicon.ico'); ?>" />
+
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="description" content="Leia, em primeira mão, as notícias do Exército Brasileiro!">
 	<meta property="og:site_name" content="Diário Brasileiro - Rainer">
 	<meta property="og:title" content="Diário Brasileiro - Rainer">
 	<meta property="og:description" content="Leia, em primeira mão, as notícias do Exército Brasileiro!">
-	<meta property="og:url" content="https://diario.forcasarmadasbrhb.net/">
+	<meta property="og:url" content="<?php echo esc_url(home_url('/')); ?>">
 	<meta property="og:locale" content="pt_BR">
 	<meta property="og:image" content="https://i.imgur.com/VCYRVsP.png">
-	<meta name="twitter:site" content="exbrhabbo_" />
+	<meta name="twitter:site" content="@exbrhabbo_" />
 	<meta name="twitter:title" content="Diário Brasileiro - Rainer" />
 	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:site" content="exbrhabbo_" />
-	<meta name="twitter:creator" content="exbrhabbo_" />
+	<meta name="twitter:creator" content="@exbrhabbo_" />
 	<meta name="theme-color" content="#ffa800">
-
 	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="https://diario.forcasarmadasbrhb.net/assets/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/assets/css/normalize.css" />
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-	<link rel="stylesheet" type="text/css" href="https://diario.forcasarmadasbrhb.net/assets/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/assets/css/main.css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" crossorigin="anonymous"></script>
 	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 	<script data-ad-client="ca-pub-3124063303337744" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<script>
-		const c = el => document.querySelector(el)
-		const ca = el => document.querySelectorAll(el)
-		const BASE = 'https://diario.forcasarmadasbrhb.net/'
+		const c = el => document.querySelector(el);
+		const ca = el => document.querySelectorAll(el);
+		const BASE = '<?php echo home_url('/'); ?>';
 	</script>
 	<?php wp_head(); ?>
 </head>
@@ -83,7 +83,7 @@
 						src="<?php echo home_url('/assets/images/dbr.png'); ?>"
 						alt="DBR Logo"
 						width="64"
-						onerror="this.onerror=null;this.src='https://diario.forcasarmadasbrhb.net/assets/images/dbr.png';">
+						onerror="this.onerror=null;this.src='<?php echo get_template_directory_uri(); ?>/assets/images/dbr.png';">
 
 				</a>
 				<ul class="hide-on-med-and-down">
@@ -93,7 +93,7 @@
 								src="<?php echo home_url('/assets/images/dbr.png'); ?>"
 								alt="DBR Logo"
 								width="64"
-								onerror="this.onerror=null;this.src='https://diario.forcasarmadasbrhb.net/assets/images/dbr.png';">
+								onerror="this.onerror=null;this.src='<?php echo get_template_directory_uri(); ?>/assets/images/dbr.png';">
 						</a>
 					</li>
 					<li><a href="<?php echo home_url('/'); ?>">INÍCIO</a></li>

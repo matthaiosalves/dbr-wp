@@ -124,6 +124,7 @@ get_header(); ?>
 				<!-- ...continue todas as colunas do seu HTML igual estava... -->
 			</div>
 		</div>
+
 		<div class="equipe">
 			<h1>Essa é nossa equipe!</h1>
 			<div style="position:relative;min-height:90px;overflow:hidden;">
@@ -166,9 +167,6 @@ get_header(); ?>
 				<?php endforeach; ?>
 			</div>
 		</div>
-
-
-
 
 		<div id="search-area">
 			<form id="search-form" action="javascript:void(0);">
@@ -235,5 +233,45 @@ get_header(); ?>
 		<?php get_template_part('sidebar'); ?>
 	</div>
 </div>
+
+<script>
+	document.getElementById('search-form').addEventListener('submit', function(e) {
+		e.preventDefault();
+		let term = document.getElementById('keyword').value.trim();
+		let loading = document.getElementById('search-loading');
+		let leiaMais = document.getElementById('leia-mais');
+		if (!term) return;
+
+		loading.style.display = 'block';
+		leiaMais.innerHTML = ""; // Limpa enquanto busca
+
+		fetch('<?php echo admin_url("admin-ajax.php"); ?>?action=dbr_ajax_search&keyword=' + encodeURIComponent(term))
+			.then(response => response.json())
+			.then(data => {
+				loading.style.display = 'none';
+				if (data.length > 0) {
+					leiaMais.innerHTML = `<h1>Resultados encontrados</h1>` +
+						data.map(item =>
+							`<a href="${item.link}">
+              <div class="noticia">
+                <div class="imagem" style="background-image:url('${item.img}');"></div>
+                <div class="conteudo">
+                  <p>${item.title}</p>
+                  <p>${item.date} - ${item.author}</p>
+                  <p>${item.excerpt}</p>
+                </div>
+              </div>
+            </a>`
+						).join('');
+				} else {
+					leiaMais.innerHTML = `<h1>Resultados encontrados</h1><p>Nenhuma notícia encontrada.</p>`;
+				}
+			})
+			.catch(err => {
+				loading.style.display = 'none';
+				leiaMais.innerHTML = `<p>Erro ao buscar resultados.</p>`;
+			});
+	});
+</script>
 
 <?php get_footer(); ?>

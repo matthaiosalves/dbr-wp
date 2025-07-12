@@ -180,3 +180,24 @@ function dbr_ajax_search()
 	}
 	wp_send_json($results);
 }
+
+
+add_filter('login_redirect', function ($redirect_to, $request, $user) {
+	if (is_wp_error($user) || !is_a($user, 'WP_User')) {
+		return $redirect_to;
+	}
+	return home_url('/');
+}, 10, 3);
+
+add_action('after_setup_theme', function () {
+	if (is_user_logged_in() && !current_user_can('administrator')) {
+		show_admin_bar(false);
+	}
+});
+
+add_action('init', function () {
+	$post_types = get_post_types(['public' => true], 'names');
+	foreach ($post_types as $type) {
+		add_post_type_support($type, 'comments');
+	}
+});

@@ -14,7 +14,7 @@ function cptui_register_my_cpts_noticia()
       'slug' => 'noticia/%noticia_id%',
       'with_front' => false
     ],
-    "supports" => ["title", "editor", "thumbnail", "excerpt"],
+    "supports" => ["title", "editor", "thumbnail", "excerpt", "comments"],
     "show_in_rest" => true,
     "taxonomies" => array('category'),
   ];
