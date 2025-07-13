@@ -19,8 +19,12 @@
       ?>
 
       <p class="titulo"><?php the_title(); ?></p>
+      <?php
+      $author_id = get_post_field('post_author', get_the_ID());
+      $author_display_name = get_the_author_meta('display_name', $author_id);
+      ?>
       <p class="por">
-        <?php the_author(); ?> -
+        <?php echo esc_html($author_display_name); ?> -
         <?php echo get_the_date('d \d\e F \d\e Y \à\s H:i'); ?>
       </p>
 
