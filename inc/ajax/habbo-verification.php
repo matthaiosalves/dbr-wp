@@ -38,7 +38,7 @@ function dbr_verifica_habbo_missao_ajax()
   }
 }
 
-// Ajax para gerar novo código
+// Ajax para gerar novo código com bloqueio e UX melhorada
 add_action('wp_ajax_novo_codigo_habbo', function () {
   if (!is_user_logged_in()) {
     wp_send_json_error(['msg' => 'Faça login.']);
@@ -46,16 +46,24 @@ add_action('wp_ajax_novo_codigo_habbo', function () {
   $user_id = get_current_user_id();
   if (!session_id()) session_start();
 
-  // Bloqueio: só permite gerar novo código a cada 60s
   $last_gen = $_SESSION['dbr_habbo_verification_last_gen'][$user_id] ?? 0;
-  if (time() - $last_gen < 60) {
-    $resta = 60 - (time() - $last_gen);
-    wp_send_json_error(['msg' => "Aguarde $resta segundos para gerar um novo código."]);
+  $agora = time();
+  $resta = 60 - ($agora - $last_gen);
+
+  if ($agora - $last_gen < 60) {
+    // Sempre retorna o código atual e o tempo de espera, para manter UX suave
+    $code = $_SESSION['dbr_habbo_verification_code'][$user_id] ?? '';
+    wp_send_json_success([
+      'code' => $code,
+      'wait' => $resta > 0 ? $resta : 0,
+      'msg' => "Aguarde $resta segundos para gerar um novo código."
+    ]);
   }
 
+  // Gera novo código
   $code = 'DBR' . sprintf('%04d', rand(0, 9999));
   $_SESSION['dbr_habbo_verification_code'][$user_id] = $code;
-  $_SESSION['dbr_habbo_verification_last_gen'][$user_id] = time();
+  $_SESSION['dbr_habbo_verification_last_gen'][$user_id] = $agora;
   update_user_meta($user_id, 'verificado_habbo', 0); // volta para não verificado ao trocar
-  wp_send_json_success(['code' => $code]);
+  wp_send_json_success(['code' => $code, 'wait' => 60, 'msg' => 'Novo código gerado!']);
 });

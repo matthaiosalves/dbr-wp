@@ -13,16 +13,17 @@ $user_id = $current_user->ID;
 
 if (!session_id()) session_start();
 
-if (empty($_SESSION['dbr_habbo_verification_code'][$user_id]) || empty($_SESSION['dbr_habbo_verification_expire'][$user_id]) || $_SESSION['dbr_habbo_verification_expire'][$user_id] < time()) {
+if (empty($_SESSION['dbr_habbo_verification_code'][$user_id]) || empty($_SESSION['dbr_habbo_verification_last_gen'][$user_id])) {
   $_SESSION['dbr_habbo_verification_code'][$user_id] = 'DBR' . sprintf('%04d', rand(0, 9999));
-  $_SESSION['dbr_habbo_verification_expire'][$user_id] = time() + 60;
+  $_SESSION['dbr_habbo_verification_last_gen'][$user_id] = time();
 }
 $verification_code = $_SESSION['dbr_habbo_verification_code'][$user_id];
-$expire_ts = $_SESSION['dbr_habbo_verification_expire'][$user_id];
+// Timer: quanto falta para liberar novo código
+$expire_ts = $_SESSION['dbr_habbo_verification_last_gen'][$user_id] + 60;
 
-$verificado = intval(get_user_meta($user_id, 'verificado_habbo', true));
+$verificado = intval(get_field('verificado_habbo', 'user_' . $user_id));
 
-// Lógica de alteração de senha (igual já estava)
+// Lógica de alteração de senha
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($_POST['dbr_honey'])) {
   $senha_atual = $_POST['senha_atual'] ?? '';
   $nova_senha = $_POST['nova_senha'] ?? '';
@@ -75,27 +76,43 @@ get_header();
         </form>
       <?php endif; ?>
 
-      <div class="form-group" style="margin-top:50px;">
-        <?php if ($verificado) : ?>
-          <div class="card-panel green lighten-2 white-text" style="margin: 15px 0; text-align:center; font-size:20px; font-weight:bold;">
-            ✅ Identidade verificada com sucesso!
+      <!-- Botão Materialize para abrir modal, só aparece se não verificado -->
+      <?php if (!$verificado): ?>
+        <a class="waves-effect waves-light btn modal-trigger orange" href="#modal-verificacao" style="margin-top:40px;">
+          Verificar Identidade Habbo
+        </a>
+      <?php endif; ?>
+
+      <!-- Modal Materialize -->
+      <div id="modal-verificacao" class="modal">
+        <div class="modal-content">
+          <h5 style="margin-top:0">Confirmação de Identidade Habbo</h5>
+          <div class="form-group" style="margin-top:20px;">
+            <?php if ($verificado): ?>
+              <div class="card-panel green lighten-2 white-text center-align" style="font-size:18px; font-weight:bold;">
+                ✅ Identidade verificada com sucesso!
+              </div>
+            <?php else: ?>
+              <label class="active black-text" style="font-weight:bold;font-size:18px;">
+                Cole na sua missão
+              </label>
+              <input type="hidden" name="codigo_hb" id="codigo_hb" value="<?php echo esc_attr($verification_code); ?>">
+              <p id="codigo-habbo" class="card-panel orange white-text center-align" style="font-size:24px;margin-top:8px;margin-bottom:8px;">
+                <?php echo esc_html($verification_code); ?>
+              </p>
+              <div id="timer" class="center-align" style="font-weight:bold;color:#333;margin-top:0;margin-bottom:14px;">
+                Novo código em: <span id="timer-count"></span>
+              </div>
+              <button id="verificar-codigo-btn" class="waves-effect waves-light btn orange" style="margin-top:10px;">
+                Confirmar identidade
+              </button>
+              <p id="msg-habbo-verifica" class="center-align" style="margin-top:12px;"></p>
+            <?php endif; ?>
           </div>
-        <?php else : ?>
-          <label class="browser-default active" style="color:#000;font-weight:bold;font-size:20px;">
-            Cole na sua missão
-          </label>
-          <input type="hidden" name="codigo_hb" id="codigo_hb" value="<?php echo esc_attr($verification_code); ?>">
-          <p id="codigo-habbo" style="height:50px;background:#ffa800;line-height:50px;color:#fff;font-weight:bold;text-align:center;border-radius:2px;font-size:30px;margin-top: 0;">
-            <?php echo esc_html($verification_code); ?>
-          </p>
-          <div id="timer" style="font-weight:bold;color:#333;text-align:center;margin-top:0;margin-bottom:12px;">
-            Novo código em: <span id="timer-count"></span>
-          </div>
-          <!-- Botão opcional, mas agora não faz sentido: -->
-          <!-- <button id="novo-codigo-btn" class="btn" style="margin-top:10px;">Gerar novo código</button> -->
-          <button id="verificar-codigo-btn" class="btn" style="margin-top:10px;">Confirmar identidade</button>
-          <p id="msg-habbo-verifica" style="margin-top:12px;"></p>
-        <?php endif; ?>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect btn-flat">Fechar</a>
+        </div>
       </div>
     </div>
   </div>
@@ -105,6 +122,11 @@ get_header();
 </div>
 
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    M.Modal.init(elems);
+  });
+
   let expireTs = <?php echo intval($expire_ts); ?>;
   let timerEl = document.getElementById('timer-count');
   let codeEl = document.getElementById('codigo-habbo');
@@ -113,7 +135,7 @@ get_header();
 
   function refreshCode() {
     fetch('<?php echo admin_url('admin-ajax.php'); ?>?action=novo_codigo_habbo', {
-        method: 'POST',
+        method: 'GET',
         credentials: 'same-origin'
       })
       .then(r => r.json())
@@ -121,8 +143,21 @@ get_header();
         if (data.success) {
           codeEl.textContent = data.data.code;
           codeInput.value = data.data.code;
-          expireTs = Math.floor(Date.now() / 1000) + 60;
+          expireTs = Math.floor(Date.now() / 1000) + (data.data.wait || 60);
           startTimer();
+        } else if (data.data && data.data.code) {
+          codeEl.textContent = data.data.code;
+          codeInput.value = data.data.code;
+          expireTs = Math.floor(Date.now() / 1000) + (data.data.wait || 10);
+          startTimer();
+          if (data.data.msg) {
+            if (typeof M !== "undefined" && M.toast) {
+              M.toast({
+                html: data.data.msg,
+                classes: "orange darken-2"
+              });
+            }
+          }
         }
       });
   }
@@ -147,6 +182,7 @@ get_header();
     startTimer();
   <?php endif; ?>
 
+  // Verificação AJAX
   document.getElementById('verificar-codigo-btn') && document.getElementById('verificar-codigo-btn').addEventListener('click', function(e) {
     e.preventDefault();
     var msgEl = document.getElementById('msg-habbo-verifica');

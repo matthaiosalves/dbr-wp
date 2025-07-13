@@ -55,6 +55,20 @@
 
 <body <?php body_class(); ?>>
 
+	<?php
+	if (is_user_logged_in()) {
+		$current_user = wp_get_current_user();
+		$is_verified = get_field('verificado_habbo', 'user_' . $current_user->ID);
+
+		if (!$is_verified) {
+			echo '<div class="verificacao-alert" style="background: #fff3cd; color: #856404; padding: 12px; text-align: center; border-bottom: 1px solid #ffeeba;">
+            Atenção: sua conta ainda não foi verificada. <a href="/perfil" style="text-decoration: underline;">Clique aqui para verificar sua identidade Habbo</a>.
+        </div>';
+		}
+	}
+	?>
+
+
 	<!-- Login Dropdown (mantido do original, você pode tirar depois) -->
 	<ul id="login" class="dropdown-content">
 		<form action="<?php echo esc_url(wp_login_url()); ?>" method="POST" autocomplete="username">
