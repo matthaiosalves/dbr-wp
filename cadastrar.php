@@ -83,12 +83,6 @@ get_header(); ?>
           <input type="password" class="browser-default btn100" id="senhaa" name="senhaa" required style="height:40px;padding-left:5px;" placeholder="Digite uma senha diferente da do seu habbo aqui">
         </div><br>
 
-        <div class="form-group">
-          <label style="color:#000;font-weight:bold;font-size:20px;">Cole na sua missão</label>
-          <input type="hidden" name="codigo_hb" value="DBR7457">
-          <p style="height:50px;background:#ffa800;line-height:50px;color:#fff;font-weight:bold;text-align:center;border-radius:2px;font-size:30px;margin-top: 0;">DBR7457</p>
-        </div>
-
         <div style="display: flex;justify-content: center;margin-bottom:10px;">
           <div id="captcha_element2">
             <!-- Coloque seu reCAPTCHA aqui, se usar -->

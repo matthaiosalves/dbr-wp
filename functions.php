@@ -139,6 +139,7 @@ add_action('after_setup_theme', 'dbr_wp_content_width', 0);
 require_once get_template_directory() . '/inc/cpt/noticias.php';
 require_once get_template_directory() . '/inc/noticias-rules-url.php';
 require_once get_template_directory() . '/inc/ajax/buscaHome.php';
+require_once get_template_directory() . '/inc/ajax/habbo-verification.php';
 
 add_action('pre_get_posts', function ($query) {
 	if (!is_admin() && $query->is_main_query() && is_category()) {
