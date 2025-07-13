@@ -1,70 +1,94 @@
-[![Build Status](https://travis-ci.org/Automattic/_s.svg?branch=master)](https://travis-ci.org/Automattic/_s)
+# dbr-wp
 
-_s
-===
+## Resumo geral do projeto
 
-Hi. I'm a starter theme called `_s`, or `underscores`, if you like. I'm a theme meant for hacking so don't use me as a Parent Theme. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.
+**dbr-wp** é um tema WordPress customizado desenvolvido para um fã site do Habbo Hotel, servindo como blog e jornal do jogo. O objetivo principal do projeto é oferecer um ambiente organizado, moderno e de fácil manutenção para publicação de notícias e conteúdos do universo Habbo, além de migrar uma solução PHP pura (MVC) para a arquitetura WordPress, garantindo mais performance, segurança e escalabilidade.
 
-My ultra-minimal CSS might make me look like theme tartare but that means less stuff to get in your way when you're designing your awesome theme. Here are some of the other more interesting things you'll find here:
+## Principais funcionalidades
 
-* A modern workflow with a pre-made command-line interface to turn your project into a more pleasant experience.
-* A just right amount of lean, well-commented, modern, HTML5 templates.
-* A custom header implementation in `inc/custom-header.php`. Just add the code snippet found in the comments of `inc/custom-header.php` to your `header.php` template.
-* Custom template tags in `inc/template-tags.php` that keep your templates clean and neat and prevent code duplication.
-* Some small tweaks in `inc/template-functions.php` that can improve your theming experience.
-* A script at `js/navigation.js` that makes your menu a toggled dropdown on small screens (like your phone), ready for CSS artistry. It's enqueued in `functions.php`.
-* 2 sample layouts in `sass/layouts/` made using CSS Grid for a sidebar on either side of your content. Just uncomment the layout of your choice in `sass/style.scss`.
-Note: `.no-sidebar` styles are automatically loaded.
-* Smartly organized starter CSS in `style.css` that will help you to quickly get your design off the ground.
-* Full support for `WooCommerce plugin` integration with hooks in `inc/woocommerce.php`, styling override woocommerce.css with product gallery features (zoom, swipe, lightbox) enabled.
-* Licensed under GPLv2 or later. :) Use it to make something cool.
+- Portal de notícias sobre Habbo Hotel
+- Páginas customizadas (equipe, perfil, painel, etc.)
+- Login e gerenciamento de usuários adaptado à proposta do site
+- Layout personalizado e responsivo
+- Organização de categorias e notícias
+- Área de painel e permissões customizadas
+- Estrutura modular visando fácil manutenção e evolução futura
 
-Installation
----------------
+## Como instalar e rodar
 
-### Requirements
+1. **Pré-requisitos**
 
-`_s` requires the following dependencies:
+   - Instalação padrão do WordPress (5.8+ recomendado)
+   - Acesso ao painel de administração do WordPress
 
-- [Node.js](https://nodejs.org/)
-- [Composer](https://getcomposer.org/)
+2. **Instalação do tema**
 
-### Quick Start
+   - Baixe o tema (`dbr-wp`) em formato ZIP.
+   - No painel do WordPress, acesse _Aparência > Temas > Adicionar novo > Enviar tema_.
+   - Selecione o arquivo ZIP e clique em _Instalar agora_.
+   - Após a instalação, ative o tema.
 
-Clone or download this repository, change its name to something else (like, say, `megatherium-is-awesome`), and then you'll need to do a six-step find and replace on the name in all the templates.
+3. **Configurações adicionais**
+   - Recomenda-se revisar as páginas criadas automaticamente e configurar menus, widgets e opções do tema conforme a necessidade do site.
 
-1. Search for `'_s'` (inside single quotations) to capture the text domain and replace with: `'megatherium-is-awesome'`.
-2. Search for `_s_` to capture all the functions names and replace with: `megatherium_is_awesome_`.
-3. Search for `Text Domain: _s` in `style.css` and replace with: `Text Domain: megatherium-is-awesome`.
-4. Search for <code>&nbsp;_s</code> (with a space before it) to capture DocBlocks and replace with: <code>&nbsp;Megatherium_is_Awesome</code>.
-5. Search for `_s-` to capture prefixed handles and replace with: `megatherium-is-awesome-`.
-6. Search for `_S_` (in uppercase) to capture constants and replace with: `MEGATHERIUM_IS_AWESOME_`.
+## Principais dependências e requisitos
 
-Then, update the stylesheet header in `style.css`, the links in `footer.php` with your own information and rename `_s.pot` from `languages` folder to use the theme's slug. Next, update or delete this readme.
+- **WordPress:** 5.8 ou superior
+- **PHP:** 7.4 ou superior
+- Não há dependências externas via Composer ou npm/yarn — a instalação é 100% padrão WordPress
 
-### Setup
+## Estrutura de pastas e arquivos principais
 
-To start using all the tools that come with `_s`  you need to install the necessary Node.js and Composer dependencies :
+| Arquivo                           | Descrição                                                               |
+| --------------------------------- | ----------------------------------------------------------------------- |
+| `404.php`                         | Página de erro padrão para URLs não encontradas                         |
+| `cadastrar.php`                   | Página customizada para cadastro de usuários                            |
+| `category.php`                    | Template de listagem por categoria de posts                             |
+| `comments.php`                    | Template para gerenciamento e exibição de comentários                   |
+| `equipe.php`                      | Página para exibição da equipe do site                                  |
+| `esqueceu-senha.php`              | Página de recuperação de senha personalizada                            |
+| `fale-conosco.php`                | Página de contato/fale conosco                                          |
+| `footer.php`                      | Rodapé do tema, presente em todas as páginas                            |
+| `functions.php`                   | Funções customizadas, hooks, integrações e registro de recursos do tema |
+| `header.php`                      | Cabeçalho do tema, presente em todas as páginas                         |
+| `index.php`                       | Arquivo principal, controla o carregamento do tema                      |
+| `login.php`                       | Página customizada de login                                             |
+| `minhas-noticias.php`             | Página personalizada para exibição de notícias do usuário               |
+| `page.php`                        | Template padrão de páginas                                              |
+| `painel.php`                      | Painel do usuário, com funcionalidades customizadas                     |
+| `perfil.php`                      | Página de perfil do usuário                                             |
+| `permissões.php`                  | Controle e exibição de permissões especiais no sistema                  |
+| `search.php`                      | Página de resultados de busca                                           |
+| `seja-dbr.php`                    | Página institucional para “Seja DBR”                                    |
+| `sidebar.php`                     | Barra lateral do tema                                                   |
+| `single-noticia.php`              | Template de exibição de uma notícia individual                          |
+| `style.css`                       | Estilos principais do tema (obrigatório para temas WP)                  |
+| `todas-noticias.php`              | Listagem de todas as notícias do site                                   |
+| `.eslintrc` e `.stylelintrc.json` | Configurações de código e formatação para devs                          |
+| `composer.json`, `package.json`   | (Não utilizados para instalação; apenas referências de projeto)         |
+| `LICENSE`                         | Licença do projeto                                                      |
+| `screenshot.png`                  | Imagem de preview do tema para exibição no painel WP                    |
+| `README.md`, `readme.txt`         | Documentação do projeto e instruções rápidas                            |
 
-```sh
-$ composer install
-$ npm install
-```
+## Exemplos de uso
 
-### Available CLI commands
+- **Publicar uma nova notícia:**  
+  Acesse o painel do WordPress, clique em _Posts > Adicionar novo_, preencha os dados e publique.  
+  A notícia será exibida automaticamente na página inicial e nas seções correspondentes.
 
-`_s` comes packed with CLI commands tailored for WordPress theme development :
+- **Gerenciar perfil:**  
+  Usuários logados podem acessar o menu de perfil para editar informações, visualizar suas notícias e acessar áreas restritas conforme permissões.
 
-- `composer lint:wpcs` : checks all PHP files against [PHP Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/).
-- `composer lint:php` : checks all PHP files for syntax errors.
-- `composer make-pot` : generates a .pot file in the `languages/` directory.
-- `npm run compile:css` : compiles SASS files to css.
-- `npm run compile:rtl` : generates an RTL stylesheet.
-- `npm run watch` : watches all SASS files and recompiles them to css when they change.
-- `npm run lint:scss` : checks all SASS files against [CSS Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/css/).
-- `npm run lint:js` : checks all JavaScript files against [JavaScript Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/javascript/).
-- `npm run bundle` : generates a .zip archive for distribution, excluding development and system files.
+- **Equipe e contato:**  
+  As páginas de equipe e contato estão disponíveis no menu principal, facilitando a comunicação e apresentação dos colaboradores do fã site.
 
-Now you're ready to go! The next step is easy to say, but harder to do: make an awesome WordPress theme. :)
+## Como contribuir
 
-Good luck!
+No momento, o projeto é fechado para contribuições externas.  
+Caso queira sugerir melhorias ou relatar bugs, entre em contato diretamente com o mantenedor.
+
+## Contato/Suporte
+
+Para dúvidas, sugestões ou suporte, utilize o formulário de contato no site ou envie um e-mail para o administrador indicado no painel WordPress.
+
+---
