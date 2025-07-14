@@ -3,9 +3,9 @@
 <?php if (!is_user_logged_in()) : ?>
 	<h5 style="font-weight:bold;font-size:20px;">
 		Efetue o
-		<a href="<?php echo esc_url(wp_login_url(get_permalink())); ?>" style="color:#ffa800;">login</a>
+		<a href="<?php echo home_url('/login'); ?>" style="color:#ffa800;">login</a>
 		ou
-		<a href="<?php echo esc_url(wp_registration_url()); ?>" style="color:#ffa800;">cadastre-se</a>
+		<a href="<?php echo home_url('/cadastrar-se'); ?>" style="color:#ffa800;">cadastre-se</a>
 		para poder comentar.
 	</h5>
 <?php else: ?>
