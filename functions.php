@@ -152,8 +152,6 @@ add_action('admin_init', function () {
 });
 
 
-
-
 add_filter('login_redirect', function ($redirect_to, $request, $user) {
 	if (is_wp_error($user) || !is_a($user, 'WP_User')) {
 		return $redirect_to;
@@ -184,3 +182,18 @@ if (function_exists('acf_add_options_page')) {
 		'redirect'      => false
 	]);
 }
+
+// Bloqueia acesso de não administradores ao painel admin, inclusive ao perfil
+add_action('admin_init', function () {
+	if (!current_user_can('administrator') && !wp_doing_ajax()) {
+		wp_redirect(home_url());
+		exit;
+	}
+});
+
+add_action('template_redirect', function () {
+	if (is_404()) {
+		wp_redirect(home_url('/'));
+		exit;
+	}
+});

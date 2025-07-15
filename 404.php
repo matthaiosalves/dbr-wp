@@ -10,7 +10,7 @@
 
 ?>
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 
 <head>
@@ -54,4 +54,4 @@
 	</div>
 </body>
 
-</html>
+</html> -->
