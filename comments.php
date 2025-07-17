@@ -9,7 +9,17 @@
 		para poder comentar.
 	</h5>
 <?php else: ?>
-	<?php if (comments_open()) : ?>
+	<?php
+	$user_id = get_current_user_id();
+	$verificado = intval(get_field('verificado_habbo', 'user_' . $user_id));
+	?>
+	<?php if (!$verificado): ?>
+		<div class="card-panel yellow lighten-3 black-text" style="margin:15px 0; font-weight:bold;">
+			Para comentar, é necessário <span style="color:#ffa800;">verificar sua identidade Habbo</span> no perfil.
+			<br>
+			<a href="<?php echo home_url('/perfil'); ?>" style="color:#ffa800; text-decoration:underline;">Clique aqui para verificar</a>
+		</div>
+	<?php elseif (comments_open()) : ?>
 		<form action="<?php echo site_url('/wp-comments-post.php'); ?>" method="post" style="margin-bottom:10px;">
 			<?php comment_id_fields(get_the_ID()); ?>
 			<label for="comment" style="color:#000;font-weight:bold;font-size:15px;">Comente</label><br>
