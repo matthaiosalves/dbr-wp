@@ -134,7 +134,9 @@
 									<img src="https://www.habbo.com.br/habbo-imaging/avatarimage?user=<?php echo esc_attr($user_name); ?>&action=std&direction=3&head_direction=3&gesture=sml&size=l" alt="Avatar no habbo">
 								</div>
 								<a href="<?php echo home_url('/painel/perfil'); ?>" class="btn red btn100" tabindex="0">Perfil</a>
-								<a href="<?php echo home_url('/painel'); ?>" class="btn red btn100" tabindex="0">Painel da Equipe</a>
+								<?php if (current_user_can('contributor')): ?>
+									<a href="<?php echo home_url('/painel'); ?>" class="btn red btn100" tabindex="0">Painel da Equipe</a>
+								<?php endif; ?>
 								<a href="<?php echo wp_logout_url(home_url('/')); ?>" class="btn red btn100" tabindex="0">Sair</a>
 							</ul>
 						</li>
