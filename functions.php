@@ -152,6 +152,7 @@ add_action('admin_init', function () {
 });
 
 
+
 add_filter('login_redirect', function ($redirect_to, $request, $user) {
 	if (is_wp_error($user) || !is_a($user, 'WP_User')) {
 		return $redirect_to;
