@@ -33,9 +33,9 @@
 	<meta name="twitter:title" content="Diário Brasileiro - Rainer" />
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:creator" content="@exbrhabbo_" />
-	<meta name="theme-color" content="#ffa800">
-	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet">
+	<meta name="theme-color" content="#ffa800" />
+	<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,700" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Teko&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/assets/css/normalize.css" />
 	<script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -134,7 +134,7 @@
 									<img src="https://www.habbo.com.br/habbo-imaging/avatarimage?user=<?php echo esc_attr($user_name); ?>&action=std&direction=3&head_direction=3&gesture=sml&size=l" alt="Avatar no habbo">
 								</div>
 								<a href="<?php echo home_url('/painel/perfil'); ?>" class="btn red btn100" tabindex="0">Perfil</a>
-								<?php if (current_user_can('contributor')): ?>
+								<?php if (current_user_can('contributor') || current_user_can('administrator')): ?>
 									<a href="<?php echo home_url('/painel'); ?>" class="btn red btn100" tabindex="0">Painel da Equipe</a>
 								<?php endif; ?>
 								<a href="<?php echo wp_logout_url(home_url('/')); ?>" class="btn red btn100" tabindex="0">Sair</a>
@@ -149,6 +149,8 @@
 			</div>
 		</nav>
 	</div>
+
+	<!-- Menu Mobile -->
 	<ul id="slide-out" class="sidenav">
 		<li><a href="<?php echo home_url('/'); ?>">INÍCIO</a></li>
 		<li>

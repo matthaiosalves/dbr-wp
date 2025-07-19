@@ -2,17 +2,6 @@
 /*
 Template Name: Todas Noticias
 */
-get_header();
-
-// Só ADMIN pode acessar!
-if (!is_user_logged_in() || !current_user_can('administrator')) {
-  global $wp_query;
-  $wp_query->set_404();
-  status_header(404);
-  nocache_headers();
-  include(get_query_template('404'));
-  exit;
-}
 
 // PROCESSAMENTO DE POST (antes de qualquer saída)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id'], $_POST['action_type'])) {
@@ -42,6 +31,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id'], $_POST['ac
     exit;
   }
 }
+
+// Só ADMIN pode acessar!
+if (!is_user_logged_in() || !current_user_can('administrator')) {
+  global $wp_query;
+  $wp_query->set_404();
+  status_header(404);
+  nocache_headers();
+  include(get_query_template('404'));
+  exit;
+}
+
+get_header();
+
 
 // Consulta TODAS as notícias (sem filtro de autor)
 $args = [

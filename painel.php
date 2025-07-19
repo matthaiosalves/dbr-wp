@@ -5,7 +5,10 @@ Template Name: Painel
 get_header();
 
 
-if (!is_user_logged_in() || !current_user_can('contributor')) {
+if (
+  !is_user_logged_in() ||
+  (!current_user_can('contributor') && !current_user_can('administrator'))
+) {
   global $wp_query;
   $wp_query->set_404();
   status_header(404);

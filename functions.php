@@ -121,18 +121,6 @@ add_action('after_setup_theme', 'dbr_wp_content_width', 0);
 /**
  * Enqueue scripts and styles.
  */
-// function dbr_wp_scripts()
-// {
-// 	wp_enqueue_style('dbr-wp-style', get_stylesheet_uri(), array(), _S_VERSION);
-// 	wp_style_add_data('dbr-wp-style', 'rtl', 'replace');
-
-// 	wp_enqueue_script('dbr-wp-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
-
-// 	if (is_singular() && comments_open() && get_option('thread_comments')) {
-// 		wp_enqueue_script('comment-reply');
-// 	}
-// }
-// add_action('wp_enqueue_scripts', 'dbr_wp_scripts');
 
 
 
@@ -140,6 +128,7 @@ require_once get_template_directory() . '/inc/cpt/noticias.php';
 require_once get_template_directory() . '/inc/noticias-rules-url.php';
 require_once get_template_directory() . '/inc/ajax/buscaHome.php';
 require_once get_template_directory() . '/inc/ajax/habbo-verification.php';
+
 
 add_action('pre_get_posts', function ($query) {
 	if (!is_admin() && $query->is_main_query() && is_category()) {
@@ -150,7 +139,6 @@ add_action('pre_get_posts', function ($query) {
 add_action('admin_init', function () {
 	add_post_type_support('noticia', 'excerpt');
 });
-
 
 
 add_filter('login_redirect', function ($redirect_to, $request, $user) {

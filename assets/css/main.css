@@ -530,10 +530,6 @@ nav a {
 .comentarios .comentario .info p {
   margin: 0;
 }
-#seja_membro,
-.c_criacao div {
-  margin-top: var(--space-xxxl);
-}
 #seja_membro input[type="text"],
 .c_criacao input[type="text"] {
   height: 40px;
